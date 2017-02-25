@@ -21,17 +21,17 @@ function DisplayUpdate(){
 
       $ini_array = parse_ini_file("http://raspberrypi/includes/update_info.ini", TRUE);
 
-      if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) == -1) {
+      if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
       }
 
-      if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) == -1) {
+      if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">Workspace Update available.</div>';
       }
 
-      if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) == -1) {
+      if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">JSON Serial Port Server Update available.</div>';
       }
