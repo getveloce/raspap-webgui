@@ -22,8 +22,6 @@ function DisplayUpdate(){
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
-      var_dump($data_update_info);
-
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
@@ -58,7 +56,7 @@ function DisplayUpdate(){
       var_dump($update_output);
       echo "<br />";
 
-      exec("sudo git clone https://github.com/getveloce/raspap-webgui /var/www/html", $update_output, $update_return_var);
+      /*exec("sudo git clone https://github.com/getveloce/raspap-webgui /var/www/html", $update_output, $update_return_var);
 
       echo $update_return_var;
       var_dump($update_output);
@@ -68,7 +66,7 @@ function DisplayUpdate(){
 
       echo $update_return_var;
       var_dump($update_output);
-      echo "<br />";
+      echo "<br />";*/
     }
     ?>
 
