@@ -46,8 +46,8 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
-      $command = "whoami";
-      //$command = "sudo rm -rf ".escapeshellarg("/var/www/html");
+      //$command = "whoami";
+      $command = "sudo rm -rf ".escapeshellarg("/var/www/html");
       exec($command, $update_output, $update_return_var);
 
       echo $command;
