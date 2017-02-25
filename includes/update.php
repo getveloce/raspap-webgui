@@ -15,7 +15,12 @@ function DisplayUpdate(){
     <?php
     if (isset($_POST['check_update'])) {
       echo '<div class="alert alert-warning">Checking for updates Now!</div>';
-      $json_update_info = file_get_contents("update_info.php");
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_URL, "update_info.php");
+      $json_update_info = curl_exec($ch);
+      curl_close($ch);
       $data_update_info = json_decode($json_update_info, true);
     }
     ?>
@@ -26,6 +31,7 @@ function DisplayUpdate(){
     <div class="panel-body">
       <h4>Release Information</h4>
       <div class="info-item">Wifi Portal Revision</div> v 1.0.1</br>
+      <div class="info-item">Workspace Revision</div> v 1.0.1</br>
       <div class="info-item">JSPS Revision</div> v 1.88</br>
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
