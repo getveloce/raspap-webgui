@@ -55,8 +55,6 @@ function DisplayUpdate(){
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
 
-    <div class="info-item"><?php echo $json_update_info; echo " blubb "; var_dump($data_update_info); echo dirname(__FILE__); ?></div></br>
-
     <form action="?page=update_info" method="POST">
       <?php
         if(isset($update_available)) {
