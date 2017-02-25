@@ -17,8 +17,6 @@ function DisplayUpdate(){
 
     <?php
     if(isset($_POST["check_update"])) {
-      echo '<div class="alert alert-warning">Checking for Updates Now!</div>';
-
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
@@ -43,14 +41,12 @@ function DisplayUpdate(){
     }
 
     if(isset($_POST["update_now"])) {
-      echo '<div class="alert alert-warning">Start updating Now!</div>';
-
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
       $update_output = array();
       $update_return_var;
-      exec("sudo rm -rf /var/www/html", $update_output, $update_return_var);
+      exec('sudo rm -rf /var/www/html', $update_output, $update_return_var);
 
       echo $update_return_var;
       var_dump($update_output);
