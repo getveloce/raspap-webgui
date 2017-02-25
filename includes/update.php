@@ -43,7 +43,7 @@ function RPiVersion() {
 *
 *
 */
-function DisplaySystem(){
+function DisplayUpdate(){
 
   // hostname
   exec("hostname -f", $hostarray);
