@@ -15,12 +15,7 @@ function DisplayUpdate(){
     <?php
     if (isset($_POST['check_update'])) {
       echo '<div class="alert alert-warning">Checking for updates Now!</div>';
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_URL, "update_info.php");
-      $json_update_info = curl_exec($ch);
-      curl_close($ch);
+      $json_update_info = file_get_contents("update_info.php");
       $data_update_info = json_decode($json_update_info, true);
     }
     ?>
