@@ -15,8 +15,8 @@ function DisplayUpdate(){
     <?php
     if (isset($_POST['check_update'])) {
       echo '<div class="alert alert-warning">Checking for updates Now!</div>';
-      $json = file_get_contents("update_info.json");
-      $obj = json_decode($json);
+      $json_update_info = file_get_contents("update_info.php");
+      $data_update_info = json_decode($json_update_info);
     }
     ?>
 
@@ -31,7 +31,7 @@ function DisplayUpdate(){
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
-    <div class="info-item"><?php echo $obj["url"]; ?></div></br>
+    <div class="info-item"><?php echo $data_update_info["url"]; ?></div></br>
     <form action="?page=update_info" method="POST">
       <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
