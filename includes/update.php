@@ -32,7 +32,9 @@ function DisplayUpdate(){
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
-    <div class="info-item"><?php echo $data_update_info["url"]; echo " blubb "; var_dump($data_update_info); echo dirname(__FILE__); ?></div></br>
+
+    <div class="info-item"><?php echo $json_update_info; echo " blubb "; var_dump($data_update_info); echo dirname(__FILE__); ?></div></br>
+
     <form action="?page=update_info" method="POST">
       <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
