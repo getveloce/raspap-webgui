@@ -12,6 +12,15 @@ function DisplayUpdate(){
   <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Update</div>
   <div class="panel-body">
 
+    <?php
+    if (isset($_POST['check_update'])) {
+      echo '<div class="alert alert-warning">System Rebooting Now!</div>';
+      $json = file_get_contents("");
+      $obj = json_decode($json);
+      echo $obj;
+    }
+    ?>
+
     <div class="row">
     <div class="col-md-6">
     <div class="panel panel-default">
@@ -25,7 +34,7 @@ function DisplayUpdate(){
     </div><!-- /.row -->
 
     <form action="?page=update_info" method="POST">
-      <input type="submit" class="btn btn-warning" name="blubb_test_blubb" value="Check for Updates" />
+      <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
     </form>
 
