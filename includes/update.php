@@ -19,7 +19,7 @@ function DisplayUpdate(){
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
-      $ini_array = parse_ini_file("http://raspberrypi/includes/update_info.ini", TRUE);
+      $ini_array = parse_ini_file("update_info.ini", TRUE);
 
       var_dump($ini_array);
 
