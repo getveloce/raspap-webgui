@@ -150,7 +150,7 @@ $csrf_token = $_SESSION['csrf_token'];
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
               </li>
               <li>
-                 <a href="#"><i class="fa fa-exchange fa-fw"></i> Update</a>
+                 <a href="index.php?page=update_info"><i class="fa fa-exchange fa-fw"></i> Update</a>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
