@@ -9,7 +9,7 @@
  * lighttpd (I have version 1.4.31-2 installed via apt)
  * php5-cgi (I have version 5.4.4-12 installed via apt)
  * along with their supporting packages, php5 will also need to be enabled.
- * 
+ *
  * @author     Lawrence Yau <sirlagz@gmail.comm>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
@@ -46,6 +46,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
+include_once( 'includes/update.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -149,6 +150,9 @@ $csrf_token = $_SESSION['csrf_token'];
               <li>
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
               </li>
+              <li>
+                 <a href="index.php?page=update"><i class="fa fa-exchange fa-fw"></i> Update</a>
+              </li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.navbar-default -->
@@ -165,7 +169,7 @@ $csrf_token = $_SESSION['csrf_token'];
           </div>
         </div><!-- /.row -->
 
-        <?php 
+        <?php
         // handle page actions
         switch( $page ) {
           case "wlan0_info":
@@ -195,11 +199,14 @@ $csrf_token = $_SESSION['csrf_token'];
           case "system_info":
             DisplaySystem();
             break;
+          case: "update":
+            DisplayUpdate();
+            break;
           default:
             DisplayDashboard();
         }
         ?>
-      </div><!-- /#page-wrapper --> 
+      </div><!-- /#page-wrapper -->
     </div><!-- /#wrapper -->
 
     <!-- RaspAP JavaScript -->
