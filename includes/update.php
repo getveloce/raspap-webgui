@@ -1,22 +1,4 @@
 <?php
-
-function _exec($cmd, $status = "") {
-    $fontcolour="ffffff";
-    if ($status == "OK") { $fontcolour="009900"; }
-    if ($status == "ERROR") { $fontcolour="FF0000"; }
-    $handle = popen("$cmd 2>&1", 'rb');
-    while (!feof($handle)) {
-        $line = stream_get_line($handle, 10000, "\n");
-        if (empty($line)) { continue; }
-        if (preg_match("/^error/i", $line)) { $fontcolour="FF0000"; }
-        $line = str_replace(" ", "&nbsp;", $line);
-        echo ("<font face='Arial, Helvetica, sans-serif' size='2' color='".$fontcolour."'>".$line."</font><br/>\n");
-        flush();
-    }
-    pclose($handle);
-    return;
-}
-
 /**
 *
 *
@@ -63,44 +45,10 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
-      _exec("sudo /var/sudowebscript.sh cp_html_dir", $update_output, $update_return_var);
+      exec("sudo /var/sudowebscript.sh update_wifi_portal", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
-
-      _exec("sudo /var/sudowebscript.sh rm_html_dir", $update_output, $update_return_var);
-
-      var_dump($update_output);
-      echo $update_return_var;
-
-      _exec("sudo /var/sudowebscript.sh clone_wifi_portal", $update_output, $update_return_var);
-
-      var_dump($update_output);
-      echo $update_return_var;
-
-      if(/*$update_return_var != 0*/TRUE) {
-        _exec("sudo /var/sudowebscript.sh restore_html_dir", $update_output, $update_return_var);
-
-        var_dump($update_output);
-        echo $update_return_var;
-
-        _exec("sudo /var/sudowebscript.sh del_copy_html_dir", $update_output, $update_return_var);
-
-        var_dump($update_output);
-        echo $update_return_var;
-      }
-
-      /*exec("sudo git clone https://github.com/getveloce/raspap-webgui /var/www/html", $update_output, $update_return_var);
-
-      echo $update_return_var;
-      var_dump($update_output);
-      echo "<br />";
-
-      exec("sudo chown -R www-data:www-data /var/www/html", $update_output, $update_return_var);
-
-      echo $update_return_var;
-      var_dump($update_output);
-      echo "<br />";*/
     }
     ?>
 
