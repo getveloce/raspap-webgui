@@ -31,7 +31,7 @@ function DisplayUpdate(){
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
-    <div class="info-item"><?php echo $obj; ?></div></br>
+    <div class="info-item"><?php echo $obj["url"]; ?></div></br>
     <form action="?page=update_info" method="POST">
       <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
