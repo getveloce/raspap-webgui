@@ -77,9 +77,9 @@ function DisplayUpdate(){
     <div class="panel panel-default">
     <div class="panel-body">
       <h4>Release Information</h4>
-      <div class="info-item">Wifi Portal Revision <?php echo $ini_array["revision"]["wifi_portal_revision"]; ?></div></br>
-      <div class="info-item">Workspace Revision <?php echo $ini_array["revision"]["workspace_revision"]; ?></div></br>
-      <div class="info-item">JSPS Revision <?php echo $ini_array["revision"]["jsps_revision"]; ?></div></br>
+      <div class="info-item">Wifi Portal Revision</div> <?php echo $ini_array["revision"]["wifi_portal_revision"]; ?></br>
+      <div class="info-item">Workspace Revision</div> <?php echo $ini_array["revision"]["workspace_revision"]; ?></br>
+      <div class="info-item">JSPS Revision</div> <?php echo $ini_array["revision"]["jsps_revision"]; ?></br>
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
