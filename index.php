@@ -198,6 +198,9 @@ $csrf_token = $_SESSION['csrf_token'];
           case "system_info":
             DisplaySystem();
             break;
+          case "update_info":
+            DisplayUpdate();
+            break;
           default:
             DisplayDashboard();
         }

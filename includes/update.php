@@ -5,5 +5,5 @@
 *
 */
 function DisplayUpdate(){
-
+  echo "bin da";
 ?>
