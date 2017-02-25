@@ -63,12 +63,17 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
+      _exec("sudo /var/sudowebscript.sh cp_html_dir", $update_output, $update_return_var);
+
+      var_dump($update_output);
+      echo $update_return_var;
+
       _exec("sudo /var/sudowebscript.sh rm_html_dir", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
 
-      _exec("sudo /var/sudowebscript.sh clone_wifi_portal", $update_output, $update_return_var);
+      /*_exec("sudo /var/sudowebscript.sh clone_wifi_portal", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
@@ -76,7 +81,24 @@ function DisplayUpdate(){
       _exec("sudo /var/sudowebscript.sh chown_html_dir", $update_output, $update_return_var);
 
       var_dump($update_output);
-      echo $update_return_var;
+      echo $update_return_var;*/
+
+      if(/*$update_return_var != 0*/TRUE) {
+        _exec("sudo /var/sudowebscript.sh restore_html_dir", $update_output, $update_return_var);
+
+        var_dump($update_output);
+        echo $update_return_var;
+
+        _exec("sudo /var/sudowebscript.sh del_copy_html_dir", $update_output, $update_return_var);
+
+        var_dump($update_output);
+        echo $update_return_var;
+
+        _exec("sudo /var/sudowebscript.sh chown_html_dir", $update_output, $update_return_var);
+
+        var_dump($update_output);
+        echo $update_return_var;
+      }
 
       /*exec("sudo git clone https://github.com/getveloce/raspap-webgui /var/www/html", $update_output, $update_return_var);
 
