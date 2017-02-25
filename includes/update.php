@@ -17,12 +17,8 @@ function DisplayUpdate(){
 
     <?php
     if(isset($_POST["check_update"])) {
-      $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
+      $json_update_info = file_get_contents("http://getveloce/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
-
-      var_dump($data_update_info);
-      echo "<br />";
-      var_dump($ini_array);
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
