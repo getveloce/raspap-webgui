@@ -17,7 +17,9 @@
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
-
+ error_reporting(E_ALL);
+ ini_set('display_errors', 1);
+ 
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 
@@ -46,7 +48,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
-//include_once( 'includes/update.php' );
+include_once( 'includes/update.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
