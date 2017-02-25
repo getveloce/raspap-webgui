@@ -14,32 +14,59 @@ function DisplayUpdate(){
 
     <?php
     if(isset($_POST["check_update"])) {
-      echo '<div class="alert alert-warning">Checking for updates Now!</div>';
+      echo '<div class="alert alert-warning">Checking for Updates Now!</div>';
+
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
+
+      $ini_array = parse_ini_file("http://raspberrypi/includes/update_info.ini", TRUE);
+
+      if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) == -1) {
+        $update_available = TRUE;
+        echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
+      }
+
+      if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) == -1) {
+        $update_available = TRUE;
+        echo '<div class="alert alert-warning">Workspace Update available.</div>';
+      }
+
+      if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) == -1) {
+        $update_available = TRUE;
+        echo '<div class="alert alert-warning">JSON Serial Port Server Update available.</div>';
+      }
+
+      if(!isset($update_available)) {
+        echo '<div class="alert alert-warning">No Updates available.</div>';
+      }
     }
 
-    $ini_array = parse_ini_file("http://raspberrypi/includes/update_info.ini", TRUE);
+    if(isset($_POST["update_now"])) {
+      echo '<div class="alert alert-warning">Start updating Now!</div>';
 
-    if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) == -1) {
-      $update_available = TRUE;
-      echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
+      $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
+      $data_update_info = json_decode($json_update_info, true);
+
+      $update_output = array();
+      $update_return_var;
+      exec("sudo rm -rf /var/www/html", $update_output, $update_return_var);
+
+      echo $update_return_var;
+      var_dump($update_output);
+      echo "<br />";
+
+      exec("sudo git clone https://github.com/getveloce/raspap-webgui /var/www/html", $update_output, $update_return_var);
+
+      echo $update_return_var;
+      var_dump($update_output);
+      echo "<br />";
+
+      exec("sudo chown -R www-data:www-data /var/www/html", $update_output, $update_return_var);
+
+      echo $update_return_var;
+      var_dump($update_output);
+      echo "<br />";
     }
-
-    if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) == -1) {
-      $update_available = TRUE;
-      echo '<div class="alert alert-warning">Workspace Update available.</div>';
-    }
-
-    if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) == -1) {
-      $update_available = TRUE;
-      echo '<div class="alert alert-warning">JSON Serial Port Server Update available.</div>';
-    }
-
-    if(!isset($update_available)) {
-      echo '<div class="alert alert-warning">No Updates available.</div>';
-    }
-
     ?>
 
     <div class="row">
