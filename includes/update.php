@@ -20,6 +20,10 @@ function DisplayUpdate(){
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
+      var_dump($data_update_info);
+      echo "<br />";
+      var_dump($ini_array);
+
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
