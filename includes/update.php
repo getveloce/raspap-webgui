@@ -63,22 +63,17 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
-      _exec("sudo /var/sudowebscript.sh rm_html_dir", $update_output, $update_return_var);
+      exec("sudo /var/sudowebscript.sh rm_html_dir", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
 
-      _exec("sudo /var/sudowebscript.sh get_current_dir", $update_output, $update_return_var);
+      exec("sudo /var/sudowebscript.sh clone_wifi_portal", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
 
-      _exec("sudo /var/sudowebscript.sh clone_wifi_portal", $update_output, $update_return_var);
-
-      var_dump($update_output);
-      echo $update_return_var;
-
-      _exec("sudo /var/sudowebscript.sh chown_html_dir", $update_output, $update_return_var);
+      exec("sudo /var/sudowebscript.sh chown_html_dir", $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
