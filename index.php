@@ -48,7 +48,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
-include_once( 'includes/update.php' );
+//include_once( 'includes/update.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -202,7 +202,7 @@ $csrf_token = $_SESSION['csrf_token'];
             DisplaySystem();
             break;
           case: "update_raspap":
-            DisplayUpdate();
+            //DisplayUpdate();
             break;
           default:
             DisplayDashboard();
