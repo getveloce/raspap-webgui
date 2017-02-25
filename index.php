@@ -52,6 +52,7 @@ include_once( 'includes/update.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
+var_dump($page);
 
 session_start();
 if (empty($_SESSION['csrf_token'])) {
