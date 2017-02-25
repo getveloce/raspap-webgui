@@ -14,10 +14,9 @@ function DisplayUpdate(){
 
     <?php
     if (isset($_POST['check_update'])) {
-      echo '<div class="alert alert-warning">System Rebooting Now!</div>';
+      echo '<div class="alert alert-warning">Checking for updates Now!</div>';
       $json = file_get_contents("");
       $obj = json_decode($json);
-      echo $obj;
     }
     ?>
 
@@ -27,12 +26,12 @@ function DisplayUpdate(){
     <div class="panel-body">
       <h4>Release Information</h4>
       <div class="info-item">Wifi Portal Revision</div> v 1.0.1</br>
-      <div class="info-item">JSON Serial Port Server Revision</div> v 1.88</br>
+      <div class="info-item">JSPS Revision</div> v 1.88</br>
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
-
+    <?php echo $obj; ?>
     <form action="?page=update_info" method="POST">
       <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
