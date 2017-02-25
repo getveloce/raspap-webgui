@@ -46,7 +46,7 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
-      exec('sudo rm -rf /var/www/html', $update_output, $update_return_var);
+      system('sudo rm -rf /var/www/html', $update_return_var);
 
       echo $update_return_var;
       var_dump($update_output);
