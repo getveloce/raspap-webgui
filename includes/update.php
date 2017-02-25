@@ -16,7 +16,7 @@ function DisplayUpdate(){
     if (isset($_POST['check_update'])) {
       echo '<div class="alert alert-warning">Checking for updates Now!</div>';
       $json_update_info = file_get_contents("update_info.php");
-      $data_update_info = json_decode($json_update_info);
+      $data_update_info = json_decode($json_update_info, true);
     }
     ?>
 
