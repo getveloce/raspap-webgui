@@ -21,6 +21,8 @@ function DisplayUpdate(){
 
       $ini_array = parse_ini_file("http://raspberrypi/includes/update_info.ini", TRUE);
 
+      var_dump($ini_array);
+
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
         echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
