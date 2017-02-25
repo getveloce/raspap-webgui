@@ -17,13 +17,15 @@ function DisplayUpdate(){
     <div class="panel panel-default">
     <div class="panel-body">
       <h4>Release Information</h4>
-      <div class="info-item">Revision</div> v 1.0.1</br>
+      <div class="info-item">Wifi Portal Revision</div> v 1.0.1</br>
+      <div class="info-item">JSON Serial Port Server Revision</div> v 1.88</br>
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
 
-    <form action="?page=system_info" method="POST">
+    <form action="?page=update_info" method="POST">
+      <input type="submit" class="btn btn-warning" name="blubb_test_blubb" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
     </form>
 
