@@ -5,6 +5,9 @@
 *
 */
 function DisplayUpdate(){
+
+  $ini_array = parse_ini_file("update_info.ini", TRUE);
+
   ?>
   <div class="row">
   <div class="col-lg-12">
@@ -19,9 +22,7 @@ function DisplayUpdate(){
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
-      $ini_array = parse_ini_file("update_info.ini", TRUE);
-
-      var_dump($ini_array);
+      var_dump($data_update_info);
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
@@ -76,9 +77,9 @@ function DisplayUpdate(){
     <div class="panel panel-default">
     <div class="panel-body">
       <h4>Release Information</h4>
-      <div class="info-item">Wifi Portal Revision</div> v 1.0.1</br>
-      <div class="info-item">Workspace Revision</div> v 1.0.1</br>
-      <div class="info-item">JSPS Revision</div> v 1.88</br>
+      <div class="info-item">Wifi Portal Revision <?php echo $ini_array["revision"]["wifi_portal_revision"]; ?></div></br>
+      <div class="info-item">Workspace Revision <?php echo $ini_array["revision"]["workspace_revision"]; ?></div></br>
+      <div class="info-item">JSPS Revision <?php echo $ini_array["revision"]["jsps_revision"]; ?></div></br>
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
