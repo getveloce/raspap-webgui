@@ -77,6 +77,18 @@ www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
 ```
 
+```sh
+Probably add
+www-data ALL=(ALL) NOPASSWD:/path/to/script
+
+chmod +x /path/to/script
+
+sudo usermod -a -G www-data pi (ohter)
+
+sudo chgrp www-data /home/pi/www-data (pi = other)
+sudo chmod g+rwxs /home/pi/www-data (pi = other)
+```
+
 Once those modifications are done, git clone the files to `/var/www/html`.
 **Note,** for older versions of Raspbian (before Jessie, May 2016) use
 `/var/www` instead.
