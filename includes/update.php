@@ -5,6 +5,7 @@
   <div class="panel-body">
 
 <?php
+
 function DisplayUpdate(){
 
   $ini_array = parse_ini_file("update_info.ini", TRUE);
@@ -88,6 +89,7 @@ function DisplayUpdate(){
     }
     echo "</pre>";
   }
+}
 ?>
 
   </div><!-- /.panel-body -->
