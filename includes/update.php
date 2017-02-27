@@ -1,18 +1,15 @@
+<div class="row">
+  <div class="col-lg-12">
+  <div class="panel panel-primary">
+  <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Update</div>
+  <div class="panel-body">
+
 <?php
-/**
-*
-*
-*/
 function DisplayUpdate(){
 
   $ini_array = parse_ini_file("update_info.ini", TRUE);
 
   if(!isset($_POST["update_now"])) {
-    echo '<div class="row">
-          <div class="col-lg-12">
-          <div class="panel panel-primary">
-          <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Update</div>
-          <div class="panel-body">';
 
     if(isset($_POST["check_update"])) {
       $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
@@ -65,12 +62,7 @@ function DisplayUpdate(){
 
     echo '    <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
               <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
-            </form>
-
-          </div><!-- /.panel-body -->
-          </div><!-- /.panel-primary -->
-          </div><!-- /.col-lg-12 -->
-          </div><!-- /.row -->';
+            </form>';
   }
 
   if(isset($_POST["update_now"])) {
@@ -97,3 +89,8 @@ function DisplayUpdate(){
     echo "</pre>";
   }
 ?>
+
+  </div><!-- /.panel-body -->
+  </div><!-- /.panel-primary -->
+  </div><!-- /.col-lg-12 -->
+  </div><!-- /.row -->
