@@ -1,3 +1,9 @@
+<?php
+
+function DisplayUpdate(){
+
+?>
+
 <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
@@ -5,8 +11,6 @@
   <div class="panel-body">
 
 <?php
-
-function DisplayUpdate(){
 
   $ini_array = parse_ini_file("update_info.ini", TRUE);
 
@@ -88,11 +92,13 @@ function DisplayUpdate(){
         }
     }
     echo "</pre>";
-  }
-}
-?>
+  } ?>
 
   </div><!-- /.panel-body -->
   </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
+
+<?php
+}
+?>
