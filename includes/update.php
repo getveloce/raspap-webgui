@@ -97,7 +97,7 @@ function DisplayUpdate(){
         }
     }
     echo "</pre>";
-    echo '  <form action="?page=update_info" method="POST">
+    echo '  <form action="?page=update_info" method="GET">
               <input type="button" class="btn btn-outline btn-primary" value="OK" />
             </form>';
   }
