@@ -63,6 +63,8 @@ function DisplayUpdate(){
       flush();
       $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
       echo "<pre>";
+      var_dump($data_update_info);
+      echo $data_update_info["wifi_portal_url"]
       echo $cmd;
       if (is_resource($process)) {
           while ($s = fgets($pipes[1])) {
