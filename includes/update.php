@@ -45,7 +45,7 @@ function DisplayUpdate(){
 
       $update_output = array();
       $update_return_var;
-      exec("sudo /var/sudowebscript.sh update_wifi_portal " /*. $data_update_info["wifi_portal_url"]*/, $update_output, $update_return_var);
+      exec("sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"], $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
