@@ -49,7 +49,7 @@ function DisplayUpdate(){
 
       var_dump($update_output);
       echo $update_return_var;
-      ehco $last_line;
+      echo $last_line;
     }
     ?>
 
