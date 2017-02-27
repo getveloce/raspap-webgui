@@ -36,6 +36,8 @@ function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
         return false;
     }
 
+    echo $content;
+
     $success = fwrite($handle, $content);
     fclose($handle);
 
