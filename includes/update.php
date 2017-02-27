@@ -149,6 +149,7 @@ function DisplayUpdate(){
                         "workspace_revision" => $data_update_info["workspace_revision"],
                         "jsps_revision" => $data_update_info["jsps_revision"],
                     ));
+                    
     write_ini_file($new_revision_data, "update_info.ini", TRUE);
   }
    ?>
