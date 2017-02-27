@@ -16,7 +16,7 @@ function DisplayUpdate(){
 
     <?php
     if(isset($_POST["check_update"])) {
-      $json_update_info = file_get_contents("http://getveloce/includes/update_info.php");
+      $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
@@ -51,7 +51,7 @@ function DisplayUpdate(){
       echo $update_return_var;
       echo $last_line;*/
 
-      $cmd = "ping 127.0.0.1 -c 4";
+      $cmd = "ping 127.0.0.1 -c 20";
 
       $descriptorspec = array(
          0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
