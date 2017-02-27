@@ -71,7 +71,7 @@ function DisplayUpdate(){
   }
 
   if(isset($_POST["update_now"])) {
-    $json_update_info = file_get_contents("http://raspberrypi/wifi_portal/includes/update_info.php");
+    $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
     $data_update_info = json_decode($json_update_info, TRUE);
     $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
 
@@ -84,7 +84,7 @@ function DisplayUpdate(){
     ob_flush();
     $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
     echo "<pre>";
-    echo $cmd;
+    echo $cmd . '\n';
     if (is_resource($process)) {
         while ($s = fgets($pipes[1])) {
             print $s;
