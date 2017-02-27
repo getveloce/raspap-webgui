@@ -69,6 +69,11 @@ function DisplayUpdate(){
               flush();
               ob_flush();
           }
+          while ($s = fgets($pipes[2])) {
+              print $s;
+              flush();
+              ob_flush();
+          }
       }
       echo "</pre>";
     }
@@ -93,7 +98,7 @@ function DisplayUpdate(){
           echo '<input type="submit" class="btn btn-warning" name="update_now" value="Update" />';
         }
       ?>
-      <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates BLUBB" />
+      <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
       <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
     </form>
 
