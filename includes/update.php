@@ -51,7 +51,7 @@ function DisplayUpdate(){
       echo $update_return_var;
       echo $last_line;*/
 
-      $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+      $cmd = "ping 127.0.0.1";
 
       $descriptorspec = array(
          0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
