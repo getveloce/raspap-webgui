@@ -51,7 +51,7 @@ function DisplayUpdate(){
       echo $update_return_var;
       echo $last_line;*/
 
-      $cmd = "ping 127.0.0.1";
+      $cmd = "ping 127.0.0.1 -c 4";
 
       $descriptorspec = array(
          0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
