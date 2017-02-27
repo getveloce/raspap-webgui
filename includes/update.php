@@ -7,14 +7,13 @@ function DisplayUpdate(){
 
   $ini_array = parse_ini_file("update_info.ini", TRUE);
 
-  ?>
-  <div class="row">
-  <div class="col-lg-12">
-  <div class="panel panel-primary">
-  <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Update</div>
-  <div class="panel-body">
+  if(!isset($_POST["update_now"])) {
+    echo '<div class="row">
+          <div class="col-lg-12">
+          <div class="panel panel-primary">
+          <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Update</div>
+          <div class="panel-body">';
 
-    <?php
     if(isset($_POST["check_update"])) {
       $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, TRUE);
@@ -39,58 +38,62 @@ function DisplayUpdate(){
       }
     }
 
-    if(isset($_POST["update_now"])) {
-      $json_update_info = file_get_contents("http://raspberrypi/wifi_portal/includes/update_info.php");
-      $data_update_info = json_decode($json_update_info, TRUE);
+    echo '<div class="row">
+          <div class="col-md-6">
+          <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>Release Information</h4>
+            <div class="info-item">Wifi Portal Revision</div>';
+    echo $ini_array["revision"]["wifi_portal_revision"];
+    echo '  </br>
+            <div class="info-item">Workspace Revision</div>';
+    echo $ini_array["revision"]["workspace_revision"];
+    echo '  </br>
+            <div class="info-item">JSPS Revision</div>';
+    echo $ini_array["revision"]["jsps_revision"];
+    echo '  </br>
+          </div><!-- /.panel-body -->
+          </div><!-- /.panel-default -->
+          </div><!-- /.col-md-6 -->
+          </div><!-- /.row -->
 
-      $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+            <form action="?page=update_info" method="POST">';
 
-      $descriptorspec = array(
-         0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
-         1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
-         2 => array("pipe", "w")    // stderr is a pipe that the child will write to
-      );
-      flush();
-      $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
-      echo "<pre>";
-      if (is_resource($process)) {
-          while ($s = fgets($pipes[1])) {
-              print $s;
-              flush();
-              ob_flush();
-          }
-      }
-      echo "</pre>";
-    }
-    ?>
+                if(isset($update_available)) {
+                  echo '<input type="submit" class="btn btn-warning" name="update_now" value="Update" />';
+                }
 
-    <div class="row">
-    <div class="col-md-6">
-    <div class="panel panel-default">
-    <div class="panel-body">
-      <h4>Release Information</h4>
-      <div class="info-item">Wifi Portal Revision</div> <?php echo $ini_array["revision"]["wifi_portal_revision"]; ?></br>
-      <div class="info-item">Workspace Revision</div> <?php echo $ini_array["revision"]["workspace_revision"]; ?></br>
-      <div class="info-item">JSPS Revision</div> <?php echo $ini_array["revision"]["jsps_revision"]; ?></br>
-    </div><!-- /.panel-body -->
-    </div><!-- /.panel-default -->
-    </div><!-- /.col-md-6 -->
-    </div><!-- /.row -->
+    echo '    <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
+              <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
+            </form>
 
-    <form action="?page=update_info" method="POST">
-      <?php
-        if(isset($update_available)) {
-          echo '<input type="submit" class="btn btn-warning" name="update_now" value="Update" />';
+          </div><!-- /.panel-body -->
+          </div><!-- /.panel-primary -->
+          </div><!-- /.col-lg-12 -->
+          </div><!-- /.row -->';
+  }
+  
+  if(isset($_POST["update_now"])) {
+    $json_update_info = file_get_contents("http://raspberrypi/wifi_portal/includes/update_info.php");
+    $data_update_info = json_decode($json_update_info, TRUE);
+
+    $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+
+    $descriptorspec = array(
+       0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
+       1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
+       2 => array("pipe", "w")    // stderr is a pipe that the child will write to
+    );
+    flush();
+    $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
+    echo "<pre>";
+    if (is_resource($process)) {
+        while ($s = fgets($pipes[1])) {
+            print $s;
+            flush();
+            ob_flush();
         }
-      ?>
-      <input type="submit" class="btn btn-warning" name="check_update" value="Check for Updates" />
-      <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
-    </form>
-
-  </div><!-- /.panel-body -->
-  </div><!-- /.panel-primary -->
-  </div><!-- /.col-lg-12 -->
-  </div><!-- /.row -->
-  <?php
-}
+    }
+    echo "</pre>";
+  }
 ?>
