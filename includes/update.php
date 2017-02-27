@@ -98,7 +98,7 @@ function DisplayUpdate(){
     }
     echo "</pre>";
     echo '  <form action="?page=update_info" method="POST">
-              <input type="button" class="btn btn-outline btn-primary" value="OK" onclick="document.location.reload(true)" />
+              <input type="button" class="btn btn-outline btn-primary" value="OK" />
             </form>';
   }
    ?>
