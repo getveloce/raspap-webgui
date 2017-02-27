@@ -17,7 +17,7 @@ function DisplayUpdate(){
     <?php
     if(isset($_POST["check_update"])) {
       $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
-      $data_update_info = json_decode($json_update_info, true);
+      $data_update_info = json_decode($json_update_info, TRUE);
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
@@ -40,20 +40,10 @@ function DisplayUpdate(){
     }
 
     if(isset($_POST["update_now"])) {
-      $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
-      $data_update_info = json_decode($json_update_info, true);
-      /*
-      $update_output = array();
-      $update_return_var;
-      $last_line = exec("sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"], $update_output, $update_return_var);
+      $json_update_info = file_get_contents("http://raspberrypi/wifi_portal/includes/update_info.php");
+      $data_update_info = json_decode($json_update_info, TRUE);
 
-      var_dump($update_output);
-      echo $update_return_var;
-      echo $last_line;*/
-
-      //$cmd = "ping 127.0.0.1 -c 20";
-      $cmd = "sudo /var/sudowebscript.sh update_wifi_portal https://github.com/getveloce/raspap-webgui.git";
-      //$cmd = "whoami";
+      $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
 
       $descriptorspec = array(
          0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
@@ -65,11 +55,6 @@ function DisplayUpdate(){
       echo "<pre>";
       if (is_resource($process)) {
           while ($s = fgets($pipes[1])) {
-              print $s;
-              flush();
-              ob_flush();
-          }
-          while ($s = fgets($pipes[2])) {
               print $s;
               flush();
               ob_flush();
