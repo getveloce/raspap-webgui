@@ -84,7 +84,6 @@ function DisplayUpdate(){
     ob_flush();
     $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
     echo "<pre>";
-    echo $cmd . '\n';
     if (is_resource($process)) {
         while ($s = fgets($pipes[1])) {
             print $s;
