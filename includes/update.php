@@ -90,6 +90,11 @@ function DisplayUpdate(){
             flush();
             ob_flush();
         }
+        while ($s = fgets($pipes[2])) {
+            print $s;
+            flush();
+            ob_flush();
+        }
     }
     echo "</pre>";
   } ?>
