@@ -42,14 +42,32 @@ function DisplayUpdate(){
     if(isset($_POST["update_now"])) {
       $json_update_info = file_get_contents("http://raspberrypi/includes/update_info.php");
       $data_update_info = json_decode($json_update_info, true);
-
+      /*
       $update_output = array();
       $update_return_var;
       $last_line = exec("sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"], $update_output, $update_return_var);
 
       var_dump($update_output);
       echo $update_return_var;
-      echo $last_line;
+      echo $last_line;*/
+
+      $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+
+      $descriptorspec = array(
+         0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
+         1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
+         2 => array("pipe", "w")    // stderr is a pipe that the child will write to
+      );
+      flush();
+      $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
+      echo "<pre>";
+      if (is_resource($process)) {
+          while ($s = fgets($pipes[1])) {
+              print $s;
+              flush();
+          }
+      }
+      echo "</pre>";
     }
     ?>
 
