@@ -97,7 +97,18 @@ function DisplayUpdate(){
         }
     }
     echo "</pre>";
-  } ?>
+  }
+
+  echo '</div><!-- /.panel-body -->
+        </div><!-- /.panel-default -->
+        </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+
+          <form action="?page=update_info" method="POST">
+            <input type="button" class="btn btn-outline btn-primary" value="OK" onclick="document.location.reload(true)" />
+          </form>';
+
+   ?>
 
   </div><!-- /.panel-body -->
   </div><!-- /.panel-primary -->
