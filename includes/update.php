@@ -54,7 +54,7 @@ function DisplayUpdate(){
       //$cmd = "ping 127.0.0.1 -c 20";
       $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
       //$cmd = "whoami";
-
+      
       $descriptorspec = array(
          0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
          1 => array("pipe", "w"),   // stdout is a pipe that the child will write to
@@ -64,7 +64,7 @@ function DisplayUpdate(){
       $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());
       echo "<pre>";
       var_dump($data_update_info);
-      echo $data_update_info["wifi_portal_url"]
+      echo $data_update_info["wifi_portal_url"];
       echo $cmd;
       if (is_resource($process)) {
           while ($s = fgets($pipes[1])) {
