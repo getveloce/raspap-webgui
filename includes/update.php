@@ -101,12 +101,7 @@ function DisplayUpdate(){
               <input type="submit" class="btn btn-warning" name="OK" value="OK" />
             </form>';
 
-    $new_revision_data = array(
-                    "revision" => array(
-                        "wifi_portal_revision" => $data_update_info["wifi_portal_revision"],
-                        "workspace_revision" => $data_update_info["workspace_revision"],
-                        "jsps_revision" => $data_update_info["jsps_revision"],
-                    ));
+    phpinfo();
 
     $file_handle = fopen("update_info.txt", "w");
     echo $file_handle;
