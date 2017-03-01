@@ -108,13 +108,14 @@ function DisplayUpdate(){
     echo fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
     echo fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . PHP_EOL);
     fclose($file);*/
+    /*
     echo getcwd();
     $myfile = fopen("update_info.ini", "w") or die("Unable to open file!");
     $txt = "John Doe\n";
     fwrite($myfile, $txt);
     $txt = "Jane Doe\n";
     fwrite($myfile, $txt);
-    fclose($myfile);
+    fclose($myfile);*/
 
     $myfile = fopen("includes/update_info.ini", "w") or die("Unable to open file 2!");
     $txt = "John Doe\n";
