@@ -109,6 +109,7 @@ function DisplayUpdate(){
                     ));
 
     $file_handle = fopen("update_info.txt", "w");
+    echo $file_handle;
     echo fwrite($file_handle, "[revision]\n");
     echo fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . PHP_EOL);
     echo fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
