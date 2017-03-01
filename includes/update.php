@@ -108,7 +108,7 @@ function DisplayUpdate(){
                         "jsps_revision" => $data_update_info["jsps_revision"],
                     ));
 
-    $file_handle = fopen("update_info.ini","w");
+    $file_handle = fopen("update_info.txt", "w");
     echo fwrite($file_handle, "[revision]\n");
     echo fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . PHP_EOL);
     echo fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
