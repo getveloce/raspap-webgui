@@ -1,26 +1,34 @@
 <?php
 
-function write_ini_file($filePath, array $data) {
-    $output = '';
+function write_ini_file($assoc_arr, $path) {
+    $content = "";
 
-    foreach ($data as $section => $values) {
-        //values must be an array
-        if (!is_array($values)) {
-            continue;
+    foreach ($assoc_arr as $key=>$elem) {
+        $content .= "[".$key."]\n";
+        foreach ($elem as $key2=>$elem2) {
+            if(is_array($elem2))
+            {
+                for($i=0;$i<count($elem2);$i++)
+                {
+                    $content .= $key2."[] = \"".$elem2[$i]."\"\n";
+                }
+            }
+            else if($elem2=="") $content .= $key2." = \n";
+            else $content .= $key2." = \"".$elem2."\"\n";
         }
-
-        //add section
-        $output .= "[$section]rn";
-
-        //add key/value pairs
-        foreach ($values as $key => $val) {
-            $output .= "$key=$valrn";
-        }
-        $output .= "rn";
     }
 
-    //write data to file
-    file_put_contents($filePath, trim($output));
+    if (!$handle = fopen($path, 'w')) {
+        return false;
+    }
+
+    echo $content;
+    var_dump($content);
+
+    $success = fwrite($handle, $content);
+    fclose($handle);
+
+    return $success;
 }
 
 function DisplayUpdate(){
@@ -131,7 +139,7 @@ function DisplayUpdate(){
                         "jsps_revision" => $data_update_info["jsps_revision"],
                     ));
 
-    write_ini_file("update_info.ini", $new_revision_data);
+    write_ini_file($new_revision_data, "update_info.ini", TRUE);
   }
   ?>
 
