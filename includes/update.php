@@ -73,7 +73,7 @@ function DisplayUpdate(){
   if(isset($_POST["update_now"])) {
     $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
     $data_update_info = json_decode($json_update_info, TRUE);
-    $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+    $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"] . " " . $data_update_info["wifi_portal_revision"] . " " . $data_update_info["workspace_revision"] . " " . $data_update_info["jsps_revision"];
 
     $descriptorspec = array(
        0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
@@ -116,8 +116,8 @@ function DisplayUpdate(){
     $txt = "Jane Doe\n";
     fwrite($myfile, $txt);
     fclose($myfile);*/
-    echo basename(__DIR__);
-    $myfile = fopen("includes/update_info.ini", "w") or die("Unable to open file 2!");
+
+    $myfile = fopen("update_info.ini", "w") or die("Unable to open file 2!");
     $txt = "John Doe\n";
     fwrite($myfile, $txt);
     $txt = "Jane Doe\n";
