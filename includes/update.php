@@ -116,7 +116,7 @@ function DisplayUpdate(){
     $txt = "Jane Doe\n";
     fwrite($myfile, $txt);
     fclose($myfile);*/
-
+    echo basename(__DIR__);
     $myfile = fopen("includes/update_info.ini", "w") or die("Unable to open file 2!");
     $txt = "John Doe\n";
     fwrite($myfile, $txt);
