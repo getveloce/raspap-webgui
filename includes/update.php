@@ -2,9 +2,10 @@
 
 function write_ini_file($assoc_arr, $path) {
     $content = "";
-
+    echo "bin da";
     foreach ($assoc_arr as $key=>$elem) {
         $content .= "[".$key."]\n";
+        echo $content;
         foreach ($elem as $key2=>$elem2) {
             if(is_array($elem2))
             {
