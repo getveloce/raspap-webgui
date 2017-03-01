@@ -142,25 +142,42 @@ function DisplayUpdate(){
 
     //write_ini_file($new_revision_data, "update_info.ini", TRUE);
 
-    $content = "";
-    foreach ($new_revision_data as $key=>$elem) {
-        $content .= "[".$key."]\n";
-        foreach ($elem as $key2=>$elem2) {
-            if(is_array($elem2))
+    function write_php_ini($array, $file)
+    {
+        $res = array();
+        foreach($array as $key => $val)
+        {
+            if(is_array($val))
             {
-                for($i=0;$i<count($elem2);$i++)
-                {
-                    $content .= $key2."[] = \"".$elem2[$i]."\"\n";
-                }
+                $res[] = "[$key]";
+                foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
             }
-            else if($elem2=="") $content .= $key2." = \n";
-            else $content .= $key2." = \"".$elem2."\"\n";
+            else $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
         }
+        safefilerewrite($file, implode("\r\n", $res));
     }
 
-    $handle = fopen($path, 'w');
-    fwrite($handle, $content);
-    fclose($handle);
+    function safefilerewrite($fileName, $dataToSave)
+    {    if ($fp = fopen($fileName, 'w'))
+        {
+            $startTime = microtime(TRUE);
+            do
+            {            $canWrite = flock($fp, LOCK_EX);
+               // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
+               if(!$canWrite) usleep(round(rand(0, 100)*1000));
+            } while ((!$canWrite)and((microtime(TRUE)-$startTime) < 5));
+
+            //file was locked so now we can store information
+            if ($canWrite)
+            {            fwrite($fp, $dataToSave);
+                flock($fp, LOCK_UN);
+            }
+            fclose($fp);
+        }
+
+    }
+
+    write_php_ini($new_revision_data, "update_info.ini");
   }
   ?>
 
