@@ -1,37 +1,5 @@
 <?php
 
-function write_ini_file($assoc_arr, $path) {
-    $content = "";
-    echo "bin da";
-    foreach ($assoc_arr as $key=>$elem) {
-        $content .= "[".$key."]\n";
-        echo $content;
-        foreach ($elem as $key2=>$elem2) {
-            if(is_array($elem2))
-            {
-                for($i=0;$i<count($elem2);$i++)
-                {
-                    $content .= $key2."[] = \"".$elem2[$i]."\"\n";
-                }
-            }
-            else if($elem2=="") $content .= $key2." = \n";
-            else $content .= $key2." = \"".$elem2."\"\n";
-        }
-    }
-
-    if (!$handle = fopen($path, 'w')) {
-        return false;
-    }
-
-    echo $content;
-    var_dump($content);
-
-    $success = fwrite($handle, $content);
-    fclose($handle);
-
-    return $success;
-}
-
 function DisplayUpdate(){
 
 ?>
@@ -140,44 +108,12 @@ function DisplayUpdate(){
                         "jsps_revision" => $data_update_info["jsps_revision"],
                     ));
 
-    //write_ini_file($new_revision_data, "update_info.ini", TRUE);
-
-    function write_php_ini($array, $file)
-    {
-        $res = array();
-        foreach($array as $key => $val)
-        {
-            if(is_array($val))
-            {
-                $res[] = "[$key]";
-                foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
-            }
-            else $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
-        }
-        safefilerewrite($file, implode("\r\n", $res));
-    }
-
-    function safefilerewrite($fileName, $dataToSave)
-    {    if ($fp = fopen($fileName, 'w'))
-        {
-            $startTime = microtime(TRUE);
-            do
-            {            $canWrite = flock($fp, LOCK_EX);
-               // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
-               if(!$canWrite) usleep(round(rand(0, 100)*1000));
-            } while ((!$canWrite)and((microtime(TRUE)-$startTime) < 5));
-
-            //file was locked so now we can store information
-            if ($canWrite)
-            {            fwrite($fp, $dataToSave);
-                flock($fp, LOCK_UN);
-            }
-            fclose($fp);
-        }
-
-    }
-
-    write_php_ini($new_revision_data, "update_info.ini");
+    $file_handle = fopen("update_info.ini","w");
+    fwrite($file_handle, "[revision]\n");
+    fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . "\n");
+    fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . "\n");
+    fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . "\n");
+    fclose($file);
   }
   ?>
 
