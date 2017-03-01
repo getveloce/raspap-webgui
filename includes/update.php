@@ -108,7 +108,12 @@ function DisplayUpdate(){
     echo fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
     echo fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . PHP_EOL);
     fclose($file);*/
-    echo file_put_contents("update_info.ini","Hello World. Testing!");
+    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+    $txt = "John Doe\n";
+    fwrite($myfile, $txt);
+    $txt = "Jane Doe\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
   }
   ?>
 
