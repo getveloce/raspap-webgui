@@ -100,9 +100,7 @@ function DisplayUpdate(){
     echo '  <form action="?page=update_info" method="POST">
               <input type="submit" class="btn btn-warning" name="OK" value="OK" />
             </form>';
-
-    phpinfo();
-
+            
     $file_handle = fopen("update_info.txt", "w");
     echo $file_handle;
     echo fwrite($file_handle, "[revision]\n");
