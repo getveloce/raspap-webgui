@@ -100,16 +100,28 @@ function DisplayUpdate(){
     echo '  <form action="?page=update_info" method="POST">
               <input type="submit" class="btn btn-warning" name="OK" value="OK" />
             </form>';
-
-    echo getcwd();
-
-    $file_handle = fopen("includes/update_info.txt", "w");
+/*
+    $file_handle = fopen("update_info.txt", "w");
     echo $file_handle;
     echo fwrite($file_handle, "[revision]" . PHP_EOL);
     echo fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . PHP_EOL);
     echo fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
     echo fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . PHP_EOL);
-    fclose($file);
+    fclose($file);*/
+    echo getcwd();
+    $myfile = fopen("update_info.ini", "w") or die("Unable to open file!");
+    $txt = "John Doe\n";
+    fwrite($myfile, $txt);
+    $txt = "Jane Doe\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
+
+    $myfile = fopen("includes/update_info.ini", "w") or die("Unable to open file 2!");
+    $txt = "John Doe\n";
+    fwrite($myfile, $txt);
+    $txt = "Jane Doe\n";
+    fwrite($myfile, $txt);
+    fclose($myfile);
   }
   ?>
 
