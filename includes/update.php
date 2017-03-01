@@ -101,6 +101,8 @@ function DisplayUpdate(){
               <input type="submit" class="btn btn-warning" name="OK" value="OK" />
             </form>';
 
+    echo getcwd();
+
     $file_handle = fopen("includes/update_info.txt", "w");
     echo $file_handle;
     echo fwrite($file_handle, "[revision]" . PHP_EOL);
