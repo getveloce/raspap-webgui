@@ -66,17 +66,17 @@ function DisplayUpdate(){
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">Wifi Portal Update available - ' . $data_update_info["wifi_portal_revision"] . '</div>';
+        echo '<div class="alert alert-warning">Wifi Portal Update available - v ' . $data_update_info["wifi_portal_revision"] . '</div>';
       }
 
       if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">Workspace Update available - ' . $data_update_info["workspace_revision"] . '</div>';
+        echo '<div class="alert alert-warning">Workspace Update available - v ' . $data_update_info["workspace_revision"] . '</div>';
       }
 
       if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">JSON Serial Port Server Update available - ' . $data_update_info["jsps_revision"] . '</div>';
+        echo '<div class="alert alert-warning">JSON Serial Port Server Update available - v ' . $data_update_info["jsps_revision"] . '</div>';
       }
 
       if(!isset($update_available)) {
@@ -90,13 +90,13 @@ function DisplayUpdate(){
           <div class="panel-body">
             <h4>Release Information</h4>
             <div class="info-item">Wifi Portal Revision</div>';
-    echo $ini_array["revision"]["wifi_portal_revision"];
+    echo 'v ' . $ini_array["revision"]["wifi_portal_revision"];
     echo '  </br>
             <div class="info-item">Workspace Revision</div>';
-    echo $ini_array["revision"]["workspace_revision"];
+    echo 'v ' . $ini_array["revision"]["workspace_revision"];
     echo '  </br>
             <div class="info-item">JSPS Revision</div>';
-    echo $ini_array["revision"]["jsps_revision"];
+    echo 'v ' . $ini_array["revision"]["jsps_revision"];
     echo '  </br>
           </div><!-- /.panel-body -->
           </div><!-- /.panel-default -->
