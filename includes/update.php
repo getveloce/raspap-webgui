@@ -143,10 +143,8 @@ function DisplayUpdate(){
     //write_ini_file($new_revision_data, "update_info.ini", TRUE);
 
     $content = "";
-    echo "bin da";
     foreach ($new_revision_data as $key=>$elem) {
         $content .= "[".$key."]\n";
-        echo $content;
         foreach ($elem as $key2=>$elem2) {
             if(is_array($elem2))
             {
@@ -160,14 +158,8 @@ function DisplayUpdate(){
         }
     }
 
-    if (!$handle = fopen($path, 'w')) {
-        $success = false;
-    }
-
-    echo $content;
-    var_dump($content);
-
-    $success = fwrite($handle, $content);
+    $handle = fopen($path, 'w');
+    fwrite($handle, $content);
     fclose($handle);
   }
   ?>
