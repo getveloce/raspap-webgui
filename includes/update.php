@@ -154,6 +154,8 @@ function DisplayUpdate(){
 
     write_ini_file($new_revision_data, "update_info.ini", TRUE);
 
+    echo $new_revision_data;
+
     echo $data_update_info["wifi_portal_revision"] . " + " .  $data_update_info["workspace_revision"] . " + " . $data_update_info["jsps_revision"];
   }
   ?>
