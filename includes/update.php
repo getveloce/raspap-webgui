@@ -140,7 +140,35 @@ function DisplayUpdate(){
                         "jsps_revision" => $data_update_info["jsps_revision"],
                     ));
 
-    write_ini_file($new_revision_data, "update_info.ini", TRUE);
+    //write_ini_file($new_revision_data, "update_info.ini", TRUE);
+
+    $content = "";
+    echo "bin da";
+    foreach ($new_revision_data as $key=>$elem) {
+        $content .= "[".$key."]\n";
+        echo $content;
+        foreach ($elem as $key2=>$elem2) {
+            if(is_array($elem2))
+            {
+                for($i=0;$i<count($elem2);$i++)
+                {
+                    $content .= $key2."[] = \"".$elem2[$i]."\"\n";
+                }
+            }
+            else if($elem2=="") $content .= $key2." = \n";
+            else $content .= $key2." = \"".$elem2."\"\n";
+        }
+    }
+
+    if (!$handle = fopen($path, 'w')) {
+        $success = false;
+    }
+
+    echo $content;
+    var_dump($content);
+
+    $success = fwrite($handle, $content);
+    fclose($handle);
   }
   ?>
 
