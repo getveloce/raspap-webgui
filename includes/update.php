@@ -117,7 +117,7 @@ function DisplayUpdate(){
   if(isset($_POST["update_now"])) {
     $json_update_info = file_get_contents("http://getveloce/wifi_portal/includes/update_info.php");
     $data_update_info = json_decode($json_update_info, TRUE);
-    $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"];
+    $cmd = "sudo /var/sudowebscript.sh update_wifi_portal " . $data_update_info["wifi_portal_url"] . " 2>&1";
 
     $descriptorspec = array(
        0 => array("pipe", "r"),   // stdin is a pipe that the child will read from
