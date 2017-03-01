@@ -110,9 +110,9 @@ function DisplayUpdate(){
 
     $file_handle = fopen("update_info.ini","w");
     fwrite($file_handle, "[revision]\n");
-    fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . "\n");
-    fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . "\n");
-    fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . "\n");
+    fwrite($file_handle, "wifi_portal_revision = " . $data_update_info["wifi_portal_revision"] . PHP_EOL);
+    fwrite($file_handle, "workspace_revision = " . $data_update_info["workspace_revision"] . PHP_EOL);
+    fwrite($file_handle, "jsps_revision = " . $data_update_info["jsps_revision"] . PHP_EOL);
     fclose($file);
   }
   ?>
