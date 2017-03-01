@@ -66,17 +66,17 @@ function DisplayUpdate(){
 
       if(strcmp($data_update_info["wifi_portal_revision"], $ini_array["revision"]["wifi_portal_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">Wifi Portal Update available.</div>';
+        echo '<div class="alert alert-warning">Wifi Portal Update available - ' . $data_update_info["wifi_portal_revision"] . '</div>';
       }
 
       if(strcmp($data_update_info["workspace_revision"], $ini_array["revision"]["workspace_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">Workspace Update available.</div>';
+        echo '<div class="alert alert-warning">Workspace Update available - ' . $data_update_info["workspace_revision"] . '</div>';
       }
 
       if(strcmp($data_update_info["jsps_revision"], $ini_array["revision"]["jsps_revision"]) != 0) {
         $update_available = TRUE;
-        echo '<div class="alert alert-warning">JSON Serial Port Server Update available.</div>';
+        echo '<div class="alert alert-warning">JSON Serial Port Server Update available - ' . $data_update_info["jsps_revision"] . '</div>';
       }
 
       if(!isset($update_available)) {
@@ -153,11 +153,6 @@ function DisplayUpdate(){
                     ));
 
     write_ini_file($new_revision_data, "update_info.ini", TRUE);
-
-    //echo $new_revision_data;
-    //var_dump($new_revision_data);
-
-    echo $data_update_info["wifi_portal_revision"] . " + " .  $data_update_info["workspace_revision"] . " + " . $data_update_info["jsps_revision"];
   }
   ?>
 
